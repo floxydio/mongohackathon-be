@@ -12,6 +12,11 @@ const init = () =>
     db = client.db(dbName)
   })
 
+const updateQuantity = (id, like) => {
+  const collection = db.collection("content")
+  return collection.update({_id: id}, {$set:{like: like + 1}})
+}
+
 const getItems = () => {
   const collection = db.collection('category')
   return collection.find({}).toArray()
@@ -53,4 +58,4 @@ const getContent = () => {
   return collection.find({}).toArray()
 }
 
-module.exports = { init, getItems,getItemsByCategory, insertItem, registerAccount,loginAccount, getEvent,insertDataContent,getContent}
+module.exports = { init, getItems,getItemsByCategory, insertItem, registerAccount,loginAccount, getEvent,insertDataContent,getContent,updateQuantity}

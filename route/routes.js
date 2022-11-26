@@ -19,6 +19,10 @@ const disk = multer.diskStorage({
 
 router.use("/static", express.static("storage"));
 
+router.get("/", (req,res) => {
+  res.send("Haii")
+})
+
 router.get("/blog/:category", (req,res) => {
   const category = req.params.category
   getItemsByCategory(category)
@@ -136,18 +140,7 @@ router.get("/content", (req,res) => {
       message: "Successfully Get Content"
     })
   })
-}) 
+})
 
-// router.put('/item/:id/quantity/:quantity', (req, res) => {
-//   const { id, quantity } = req.params
-//   updateQuantity(id, parseInt(quantity))
-//     .then(() => {
-//       res.status(200).end()
-//     })
-//     .catch((err) => {
-//       console.log(err)
-//       res.status(500).end()
-//     })
-// })
 
 module.exports = router
